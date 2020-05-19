@@ -8,14 +8,14 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 from sklearn.datasets import load_digits
 from sklearn.model_selection import validation_curve, GridSearchCV, cross_val_score
 
-dbdata = pd.read_csv("C://Users//user//Desktop//MLProject//monks1train.csv")
-dbdata2 = pd.read_csv("C://Users//user//Desktop//MLProject//monks1test.csv")  
+dbdata = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\monks1train.csv")
+dbdata2 = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\monks1test.csv")  
 
 
-X_train = dbdata.drop('Class', axis=1)  
-y_train = dbdata['Class']
-X_test = dbdata2.drop('Class', axis=1)
-y_test = dbdata2['Class']
+X_train = dbdata.iloc[:, [0,1,2,3,4,5]]
+y_train = dbdata.iloc[:, 6]
+X_test = dbdata2.iloc[:, [0,1,2,3,4,5]]
+y_test = dbdata2.iloc[:, 6]
 
   
 best = True
