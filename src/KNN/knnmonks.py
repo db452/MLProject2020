@@ -8,14 +8,24 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report, confusion_matrix, mean_squared_error, accuracy_score
 from sklearn.model_selection import validation_curve, GridSearchCV
 
-dbdata = pd.read_csv("C://Users//user//Desktop//MLProject//monks3train.csv")
-dbdata2 = pd.read_csv("C://Users//user//Desktop//MLProject//monks3test.csv")  
+monks1train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks1train.csv")
+monks1test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks1test.csv")  
+
+monks2train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks2train.csv")
+monks2test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks2test.csv")  
+
+monks3train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks3train.csv")
+monks3test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks3test.csv")  
+
+dbdata = monks1train
+dbdata2 = monks1test
+
     
 
-X_train = dbdata.drop('Class', axis=1)  
-y_train = dbdata['Class']
-X_test = dbdata2.drop('Class', axis=1)
-y_test = dbdata2['Class']
+X_train = dbdata.iloc[:, [0,1,2,3,4,5]]
+y_train = dbdata.iloc[:, 6]
+X_test = dbdata2.iloc[:, [0,1,2,3,4,5]]
+y_test = dbdata2.iloc[:, 6]
 
 
 best = True

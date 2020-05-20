@@ -1,0 +1,31 @@
+Move gridsearch of SVM & KNN to Gridsearch folder.
+
+Find optimal hyperparameters for concurrent SVM & KNN (should be the same)
+
+Get MLP to run with current file system
+
+Perform test regression with SVM & KNN with other dataset (aka not MLCup)
+
+Perform test regression with MLP (aka not MLCup)
+
+Find optimal hyperparameters using gridsearch for all 3 models
+
+Use best model. Pray to god!
+
+
+
+
+
+
+
+!!!!!!!!!!!!!!
+!!!OPTIONAL!!! (Nico?)
+!!!!!!!!!!!!!!
+
+Find third model, if uses different tool (not pandas, sklearn) even better. Perform same steps as above. If best model,
+use for MLCup.
+
+
+
+Final Deadline  11 July 2020 12:00
+Final deadline for me ;) - 26 May 2020
