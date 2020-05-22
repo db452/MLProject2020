@@ -22,31 +22,21 @@ dbdata2 = monks1test
 
     
 
-X_train = dbdata.iloc[:, [0,1,2,3,4,5]]
-y_train = dbdata.iloc[:, 6]
-X_test = dbdata2.iloc[:, [0,1,2,3,4,5]]
-y_test = dbdata2.iloc[:, 6]
+X_train = dbdata.iloc[:, [1,2,3,4,5,6]]
+y_train = dbdata.iloc[:, 0]
+X_test = dbdata2.iloc[:, [1,2,3,4,5,6]]
+y_test = dbdata2.iloc[:, 0]
 
 
-best = True
 
-if best == True:
-    #####Graphs the best results obtained from the gridsearch
-    knn = KNeighborsClassifier(algorithm='ball_tree', leaf_size= 2, n_neighbors= 5, p=1, weights = 'uniform', metric = 'manhattan')
-    knn.fit(X_train,y_train)
-    X_pred=knn.predict(X_train)
-    y_pred=knn.predict(X_test)
-else:
-    ##Performs the girdsearch
-    svclassifier = KNeighborsClassifier(n_jobs=-1)
-    parameters = {'n_neighbors':(np.arange(1,25)),'weights':('uniform','distance'),'algorithm':('auto', 'ball_tree', 'kd_tree'),
-    'leaf_size':(1,2,3,4,5,6,7,8,9,10,20,30,40),'p':(1,2,3,5,10),'metric':('euclidean','manhattan','minkowski')}##
-    clf = GridSearchCV(svclassifier, parameters,scoring='accuracy', iid=False,cv=10,verbose=10)
-    clf.fit(X_train,y_train)  
-    print(clf)
-    print(clf.best_estimator_)
-    print(clf.best_score_)
-    print(clf.best_params_) 
+
+
+#####Graphs the best results obtained from the gridsearch
+knn = KNeighborsClassifier(algorithm='ball_tree', leaf_size= 2, n_neighbors= 5, p=1, weights = 'uniform', metric = 'manhattan')
+knn.fit(X_train,y_train)
+X_pred=knn.predict(X_train)
+y_pred=knn.predict(X_test)
+
 
 
 ##monk1={'algorithm': 'auto', 'leaf_size': 30, 'metric': 'euclidean', 'n_neighbors': 6, 'p': 1, 'weights': 'uniform'}TR/TS:87%,81%---MSE 0.12903,0.19444

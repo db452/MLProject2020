@@ -21,33 +21,21 @@ dbdata = monks1train
 dbdata2 = monks1test
 
 
-X_train = dbdata.iloc[:, [0,1,2,3,4,5]]
-y_train = dbdata.iloc[:, 6]
-X_test = dbdata2.iloc[:, [0,1,2,3,4,5]]
-y_test = dbdata2.iloc[:, 6]
+X_train = dbdata.iloc[:, [1,2,3,4,5,6]]
+y_train = dbdata.iloc[:, 0]
+X_test = dbdata2.iloc[:, [1,2,3,4,5,6]]
+y_test = dbdata2.iloc[:, 0]
 
   
-best = True
 
-if best == True:
-    #####Graphs the best results obtained from the gridsearch
-    svclassifier = SVC(kernel='rbf',C=10000, coef0=0, decision_function_shape= 'ovo', gamma= 0.001, shrinking= True, tol=0.1, probability=True)  
-    svclassifier.fit(X_train, y_train)
-    X_pred= svclassifier.predict(X_train)
-    y_pred = svclassifier.predict(X_test)  
 
-else:
-    ##Performs the girdsearch
-    svclassifier = SVC()
-    parameters = {'C':(0.25,0.5,0.75,1,10,100,1000,10000), 'kernel':('rbf','sigmoid'), 'gamma': (0.00001,0.0001,0.001,0.01,0.1,0.5,1,'auto'),'coef0':(0,1,2,3),
-    'shrinking':(True,False), 'tol':(0.0001,0.0005,0.001,0.005,0.01,0.1),'decision_function_shape':('ovo','ovr'),'max_iter':(1,2,3,5,10,20,30)}#
-    clf = GridSearchCV(svclassifier, parameters,scoring='accuracy', iid=False,cv=5,verbose=10)
-    clf.fit(X_train,y_train)  
 
-    print(clf)
-    print(clf.best_estimator_)
-    print(clf.best_score_)
-    print(clf.best_params_)
+#####Graphs the best results obtained from the gridsearch
+svclassifier = SVC(kernel='rbf',C=10000, coef0=0, decision_function_shape= 'ovo', gamma= 0.001, shrinking= True, tol=0.1, probability=True)  
+svclassifier.fit(X_train, y_train)
+X_pred= svclassifier.predict(X_train)
+y_pred = svclassifier.predict(X_test)  
+
 
 
 ##best params monks1:{'C': 10000, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 0.001, 'kernel': 'rbf', 'shrinking': True, 'tol': 0.1}} TR/TS:85%,82%---0.14516,0.1805

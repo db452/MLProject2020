@@ -1,6 +1,8 @@
-Move gridsearch of SVM & KNN to Gridsearch folder.
+Move gridsearch of SVM & KNN to Gridsearch folder. -Done
 
-Find optimal hyperparameters for concurrent SVM & KNN (should be the same)
+Find optimal hyperparameters for concurrent SVM & KNN (should be the same)-Done
+
+Rewrite gridsearch to print best hyperparams to file and run overnight - Done
 
 Get MLP to run with current file system
 
