@@ -4,13 +4,13 @@ Find optimal hyperparameters for concurrent SVM & KNN (should be the same)-Done
 
 Rewrite gridsearch to print best hyperparams to file and run overnight - Done
 
-Get MLP to run with current file system
+Perform test regression with SVM & KNN with other dataset (aka not MLCup)- Done
 
-Perform test regression with SVM & KNN with other dataset (aka not MLCup)
+Get MLP to run with current file system
 
 Perform test regression with MLP (aka not MLCup)
 
-Find optimal hyperparameters using gridsearch for all 3 models
+Find optimal hyperparameters using gridsearch for all 3 models -Partially Done
 
 Use best model. Pray to god!
 
