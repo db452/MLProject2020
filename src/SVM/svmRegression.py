@@ -24,7 +24,7 @@ X_test = dbdata2.iloc[:, [0,1,2,3,4,5,6,7,8,9,10]]
 y_test = dbdata2.iloc[:, 11]
 
 
-svrclassifier = SVR(kernel='rbf',C=100, coef0=1, gamma= 0.7, shrinking= True, tol=0.1)  
+svrclassifier = SVR(kernel='rbf',shrinking=True, coef0=0,gamma='scale',tol=0.001,C=200,epsilon=0.2)
 svrclassifier.fit(X_train, y_train)
 X_pred= svrclassifier.predict(X_train)
 y_pred = svrclassifier.predict(X_test)  

@@ -1,0 +1,68 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!SVM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+SVM Monks1 - {'C': 810, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 0.005, 'kernel': 'rbf', 'max_iter': -1, 'shrinking': True, 'tol': 1e-06}
+
+{'C': 35, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'poly', 'max_iter': -1, 'shrinking': True, 'tol': 0.001}
+
+Training Score is  1.0
+Testing Score is  0.9211136890951276
+Training Error is  0.0
+Testing Error is  0.07888631090487239
+
+
+
+SVM Monks2-(kernel='rbf',C=1000, coef0=0, decision_function_shape= 'ovo', gamma= 'auto', shrinking= True, tol=0.0001, probability=True)
+
+Training Score is  1.0
+Testing Score is  0.8213457076566125
+Training Error is  0.0
+Testing Error is  0.17865429234338748
+
+
+(kernel='poly',class_weight='balanced',max_iter=-1,decision_function_shape='ovo',shrinking=True,C=100,coef0=0.5,degree=3,gamma=0.1,tol=0.14)  Scored better on Gridsearch
+but...
+
+
+Training Score is  0.9107142857142857
+Testing Score is  0.7911832946635731
+Training Error is  0.08928571428571429
+Testing Error is  0.2088167053364269
+
+
+SVM MONKS3 - (max_iter=-1,class_weight='balanced',decision_function_shape='ovo',gamma='auto',kernel='poly',shrinking=True,C=10,coef0=1,tol=0.0001)
+
+Training Score is  0.9917355371900827
+Testing Score is  0.9443155452436195
+Training Error is  0.008264462809917356
+Testing Error is  0.05568445475638051
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!/SVM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!KNN!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+KNN MONKS1-(algorithm='auto',metric='chebyshev',weights='distance',leaf_size=7,n_neighbors=28)
+
+Training Score is  1.0
+Testing Score is  0.8004640371229699
+Training Error is  0.0
+Testing Error is  0.19953596287703015
+
+
+KNN MONKS2-(algorithm='brute', metric='mahalanobis',weights='uniform',leaf_size=30,n_neighbors=1,p=1)
+Training Score is  1.0
+Testing Score is  0.8213457076566125
+Training Error is  0.0
+Testing Error is  0.17865429234338748
+
+
+KNN MONKS3 - (n_jobs=-1,algorithm='auto',metric='manhattan',weights='distance',p=2,n_neighbors=30,leaf_size=60)
+
+Training Score is  1.0
+Testing Score is  0.9234338747099768
+Training Error is  0.0
+Testing Error is  0.0765661252900232
+

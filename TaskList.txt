@@ -16,6 +16,13 @@ Use best model. Pray to god!
 
 
 
+!!!!!!!!!!!!!!
+!!!!REPORT!!!!
+!!!!!!!!!!!!!!
+
+Add explanation of hyperparameters
+show examples of gridsearch code
+etcetc
 
 
 

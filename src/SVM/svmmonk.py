@@ -17,8 +17,8 @@ monks2test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning
 monks3train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks3train.csv")
 monks3test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks3test.csv")  
 
-dbdata = monks1train
-dbdata2 = monks1test
+dbdata = monks3train
+dbdata2 = monks3test
 
 
 X_train = dbdata.iloc[:, [1,2,3,4,5,6]]
@@ -31,7 +31,7 @@ y_test = dbdata2.iloc[:, 0]
 
 
 #####Graphs the best results obtained from the gridsearch
-svclassifier = SVC(kernel='rbf',C=10000, coef0=0, decision_function_shape= 'ovo', gamma= 0.001, shrinking= True, tol=0.1, probability=True)  
+svclassifier = SVC(max_iter=-1,class_weight='balanced',decision_function_shape='ovo',gamma='auto',kernel='poly',shrinking=True,C=10,coef0=1,tol=0.0001)
 svclassifier.fit(X_train, y_train)
 X_pred= svclassifier.predict(X_train)
 y_pred = svclassifier.predict(X_test)  

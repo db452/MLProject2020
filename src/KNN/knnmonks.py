@@ -17,8 +17,8 @@ monks2test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning
 monks3train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks3train.csv")
 monks3test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks3test.csv")  
 
-dbdata = monks1train
-dbdata2 = monks1test
+dbdata = monks3train
+dbdata2 = monks3test
 
     
 
@@ -32,7 +32,7 @@ y_test = dbdata2.iloc[:, 0]
 
 
 #####Graphs the best results obtained from the gridsearch
-knn = KNeighborsClassifier(algorithm='ball_tree', leaf_size= 2, n_neighbors= 5, p=1, weights = 'uniform', metric = 'manhattan')
+knn = KNeighborsClassifier(algorithm='auto',metric='manhattan',weights='distance',p=2,n_neighbors=30,leaf_size=60)
 knn.fit(X_train,y_train)
 X_pred=knn.predict(X_train)
 y_pred=knn.predict(X_test)
