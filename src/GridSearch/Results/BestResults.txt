@@ -66,3 +66,22 @@ Testing Score is  0.9234338747099768
 Training Error is  0.0
 Testing Error is  0.0765661252900232
 
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SVR REGRESSION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+Column X-(shrinking=True,kernel='rbf',C=15,epsilon=0.1,gamma=0.098,tol=0.07)
+
+Training Score is  0.9915876813764759  (explained_variance_score)
+Testing Score is  0.9884323625581125
+Training Error is  0.5475270726888952   (mean_squared_error)
+Testing Error is  0.7478276153325918
+
+
+Column Y - (coef0=0,kernel='rbf',shrinking=True,C=8,tol=0.003,epsilon=0.29,gamma=0.23)
+Training Score is  0.9817062130384528
+Testing Score is  0.9530609681504781
+Training Error is  0.32628611908072835
+Testing Error is  0.8065032501288617
+
+

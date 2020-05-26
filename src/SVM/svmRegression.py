@@ -11,20 +11,20 @@ from sklearn.model_selection import validation_curve, GridSearchCV, cross_val_sc
 from sklearn import metrics
 
 
-train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Regressiontest\\winequalitytrain.csv")
-test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Regressiontest\\winequalitytest.csv")  
+train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\MLCup\\Internal Testing\\train-self.csv")
+test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\MLCup\\Internal Testing\\test-self.csv")  
 
 dbdata = train
 dbdata2 = test
 
 
-X_train = dbdata.iloc[:, [0,1,2,3,4,5,6,7,8,9,10]]
-y_train = dbdata.iloc[:, 11]
-X_test = dbdata2.iloc[:, [0,1,2,3,4,5,6,7,8,9,10]]
-y_test = dbdata2.iloc[:, 11]
+X_train = dbdata.iloc[:, np.arange(20)]
+y_train = dbdata.iloc[:, 21]
+X_test = dbdata2.iloc[:, np.arange(20)]
+y_test = dbdata2.iloc[:, 21]
 
 
-svrclassifier = SVR(kernel='rbf',shrinking=True, coef0=0,gamma='scale',tol=0.001,C=200,epsilon=0.2)
+svrclassifier = SVR(coef0=0,kernel='rbf',shrinking=True,C=8,tol=0.003,epsilon=0.29,gamma=0.23)
 svrclassifier.fit(X_train, y_train)
 X_pred= svrclassifier.predict(X_train)
 y_pred = svrclassifier.predict(X_test)  
