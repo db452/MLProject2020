@@ -10,22 +10,28 @@ from sklearn.model_selection import validation_curve, GridSearchCV
 from sklearn import metrics
 
 
-monks1train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Regressiontest\\winequalitytrain.csv")
+train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\MLCup\\Internal Testing\\train-self.csv")
 
 
-dbdata = monks1train
+dbdata = train
 
 
-X_train = dbdata.iloc[:, [0,1,2,3,4,5,6,7,8,9,10]]
-y_train = dbdata.iloc[:, 11]
+X_train = dbdata.iloc[:, np.arange(20)]
+y_train = dbdata.iloc[:, 21]
 
 ##Performs the girdsearch
-KNR = KNeighborsRegressor()
-parameters = {'n_neighbors':(np.arange(10,25)),'weights':('uniform','distance'),'algorithm':('auto', 'ball_tree', 'kd_tree'),
-'leaf_size':(1,2,3,4,5),'p':(1,2,3,5),'metric':('euclidean','manhattan','minkowski')}##
+KNR = KNeighborsRegressor(algorithm='auto', metric='manhattan', weights='distance',p=2,n_neighbors=7)
+parameters = {
+#'algorithm': ('auto', 'ball_tree', 'kd_tree', 'brute'),
+#'leaf_size': (10,15,20, 25, 30, 35, 40,45,50),
+#'metric': ('euclidean', 'manhattan', 'minkowski','chebyshev'),
+'n_neighbors': (np.arange(1,30)),
+#'p': (1, 2, 3, 5 , 10),
+#'weights': ('uniform', 'distance')
+ }
 
 
-clf = GridSearchCV(KNR, parameters,scoring='explained_variance', iid=False,cv=5,verbose=10)
+clf = GridSearchCV(KNR, parameters,scoring='neg_mean_squared_error', iid=False,cv=10,verbose=10,n_jobs=-1)
 clf.fit(X_train,y_train)  
 
 

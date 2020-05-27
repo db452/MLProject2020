@@ -9,22 +9,22 @@ from sklearn.metrics import classification_report, confusion_matrix, mean_square
 from sklearn.model_selection import validation_curve, GridSearchCV
 from sklearn import metrics
 
-monks1train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Regressiontest\\winequalitytrain.csv")
-monks1test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Regressiontest\\winequalitytest.csv")  
+train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\MLCup\\Internal Testing\\train-self.csv")
+test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\MLCup\\Internal Testing\\test-self.csv")  
 
-dbdata = monks1train
-dbdata2 = monks1test
+dbdata = train
+dbdata2 = test
 
     
 
-X_train = dbdata.iloc[:, [0,1,2,3,4,5,6,7,8,9,10]]
-y_train = dbdata.iloc[:, 11]
-X_test = dbdata2.iloc[:, [0,1,2,3,4,5,6,7,8,9,10]]
-y_test = dbdata2.iloc[:, 11]
+X_train = dbdata.iloc[:, np.arange(20)]
+y_train = dbdata.iloc[:, 21]
+X_test = dbdata2.iloc[:, np.arange(20)]
+y_test = dbdata2.iloc[:, 21]
 
 
 
-knn = KNeighborsRegressor(algorithm='auto', leaf_size= 1, n_neighbors= 10, p=1, weights = 'distance', metric = 'manhattan')
+knn = KNeighborsRegressor(algorithm='auto', metric='manhattan', weights='distance',p=2,n_neighbors=7)
 knn.fit(X_train,y_train)
 X_pred=knn.predict(X_train)
 y_pred=knn.predict(X_test)
