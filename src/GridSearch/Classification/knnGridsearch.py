@@ -8,14 +8,14 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report, confusion_matrix, mean_squared_error, accuracy_score
 from sklearn.model_selection import validation_curve, GridSearchCV
 
-monks1train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks1train.csv")
-monks1test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks1test.csv")  
+monks1train = pd.read_csv("src/dataset/Monk/pandasdataset/monks1train.csv")
+monks1test = pd.read_csv("src/dataset/Monk/pandasdataset/monks1test.csv")  
 
-monks2train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks2train.csv")
-monks2test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks2test.csv")  
+monks2train = pd.read_csv("src/dataset/Monk/pandasdataset/monks2train.csv")
+monks2test = pd.read_csv("src/dataset/Monk/pandasdataset/monks2test.csv")  
 
-monks3train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks3train.csv")
-monks3test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks3test.csv")  
+monks3train = pd.read_csv("src/dataset/Monk/pandasdataset/monks3train.csv")
+monks3test = pd.read_csv("src/dataset/Monk/pandasdataset/monks3test.csv")  
 
 
 dbdata = monks3train
@@ -38,7 +38,7 @@ clf = GridSearchCV(svclassifier, parameters,scoring='accuracy', iid=False,cv=10,
 clf.fit(X_train,y_train)  
 
 
-print(clf,file=open('C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\GridSearch\\Results\\KNNoutput.log', 'a'))
-print(clf.best_estimator_,file=open('C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\GridSearch\\Results\\KNNoutput.log', 'a'))
-print(clf.best_score_,file=open('C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\GridSearch\\Results\\KNNoutput.log', 'a'))
-print(clf.best_params_,file=open('C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\GridSearch\\Results\\KNNoutput.log', 'a'))
+print(clf,file=open('\src/GridSearch/Results/KNNoutput.log', 'a'))
+print(clf.best_estimator_,file=open('\src/GridSearch/Results/KNNoutput.log', 'a'))
+print(clf.best_score_,file=open('\src/GridSearch/Results/KNNoutput.log', 'a'))
+print(clf.best_params_,file=open('\src/GridSearch/Results/KNNoutput.log', 'a'))

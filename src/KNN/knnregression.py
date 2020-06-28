@@ -1,16 +1,12 @@
 import matplotlib.pyplot as plt
 import pandas as pd  
 import numpy as np
-
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.neighbors import KNeighborsRegressor
-from sklearn.metrics import classification_report, confusion_matrix, mean_squared_error, accuracy_score
-from sklearn.model_selection import validation_curve, GridSearchCV
+from sklearn.metrics import mean_squared_error
 from sklearn import metrics
 
-train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\MLCup\\Internal Testing\\train-self.csv")
-test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\MLCup\\Internal Testing\\test-self.csv")  
+train = pd.read_csv("src\\dataset\\MLCup\\Internal Testing\\train-self.csv")
+test = pd.read_csv("src\\dataset\\MLCup\\Internal Testing\\test-self.csv")  
 
 dbdata = train
 dbdata2 = test
@@ -24,7 +20,7 @@ y_test = dbdata2.iloc[:, 21]
 
 
 
-knn = KNeighborsRegressor(algorithm='auto', metric='manhattan', weights='distance',p=2,n_neighbors=7)
+knn = KNeighborsRegressor(algorithm='ball_tree', metric='manhattan', weights='distance',p=10,n_neighbors=22,leaf_size=10)
 knn.fit(X_train,y_train)
 X_pred=knn.predict(X_train)
 y_pred=knn.predict(X_test)

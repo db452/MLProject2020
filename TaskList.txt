@@ -12,9 +12,6 @@ Perform test regression with MLP (aka not MLCup)
 
 Find optimal hyperparameters using gridsearch for all 3 models -Partially Done
 
-Use best model. Pray to god!
-
-
 
 !!!!!!!!!!!!!!
 !!!!REPORT!!!!
@@ -22,19 +19,18 @@ Use best model. Pray to god!
 
 Add explanation of hyperparameters
 show examples of gridsearch code
-etcetc
+
+
+Add graphs pertaining to new models
+predict MLCUP values with model - done
 
 
 
 
-!!!!!!!!!!!!!!
-!!!OPTIONAL!!! (Nico?)
-!!!!!!!!!!!!!!
-
+DO AT THE END - IF TIME IS STILL AVAILABLE
 Find third model, if uses different tool (not pandas, sklearn) even better. Perform same steps as above. If best model,
 use for MLCup.
 
 
 
 Final Deadline  11 July 2020 12:00
-Final deadline for me ;) - 27 May 2020

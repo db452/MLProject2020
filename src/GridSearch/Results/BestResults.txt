@@ -95,7 +95,7 @@ Testing Score is  0.9916695548331144
 Training Error is  0.0
 Testing Error is  0.5422168843319535
 
-(algorithm='auto', metric='manhattan', weights='distance',p=2,n_neighbors=7)
+Column Y - (algorithm='auto', metric='manhattan', weights='distance',p=2,n_neighbors=7)
 
 Training Score is  1.0
 Testing Score is  0.9649924689685742
