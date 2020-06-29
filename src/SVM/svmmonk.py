@@ -8,14 +8,14 @@ from sklearn.metrics import classification_report, confusion_matrix, accuracy_sc
 from sklearn.datasets import load_digits
 from sklearn.model_selection import validation_curve, GridSearchCV, cross_val_score
 
-monks1train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks1train.csv")
-monks1test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks1test.csv")  
+monks1train = pd.read_csv("src/dataset/Monk/pandasdataset/monks1train.csv")
+monks1test = pd.read_csv("src/dataset/Monk/pandasdataset/monks1test.csv")  
 
-monks2train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks2train.csv")
-monks2test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks2test.csv")  
+monks2train = pd.read_csv("src/dataset/Monk/pandasdataset/monks2train.csv")
+monks2test = pd.read_csv("src/dataset/Monk/pandasdataset/monks2test.csv")  
 
-monks3train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks3train.csv")
-monks3test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\Monk\\pandasdataset\\monks3test.csv")  
+monks3train = pd.read_csv("src/dataset/Monk/pandasdataset/monks3train.csv")
+monks3test = pd.read_csv("src/dataset/Monk/pandasdataset/monks3test.csv")  
 
 dbdata = monks3train
 dbdata2 = monks3test
@@ -31,40 +31,40 @@ y_test = dbdata2.iloc[:, 0]
 
 
 #####Graphs the best results obtained from the gridsearch
-svclassifier = SVC(max_iter=-1,class_weight='balanced',decision_function_shape='ovo',gamma='auto',kernel='poly',shrinking=True,C=10,coef0=1,tol=0.0001)
+svclassifier = SVC(C=10, coef0= 1, decision_function_shape= 'ovo', gamma= 'auto', kernel= 'poly', max_iter= -1, shrinking= True, tol= 0.0001,probability=True)
 svclassifier.fit(X_train, y_train)
 X_pred= svclassifier.predict(X_train)
 y_pred = svclassifier.predict(X_test)  
 
 
 
-##best params monks1:{'C': 10000, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 0.001, 'kernel': 'rbf', 'shrinking': True, 'tol': 0.1}} TR/TS:85%,82%---0.14516,0.1805
-##best params monks2:{'C': 1000, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'rbf', 'shrinking': True, 'tol': 0.0001} TR/TS:100%,82%---MSE 0.0,0.17824
-##best params monks3{'C': 0.5, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'rbf', 'shrinking': True, 'tol': 0.1} TR/TS:93%,94%----MSE 0.07377,0.0625
-##{'C': 0.5, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'rbf', 'shrinking': True, 'tol': 0.1}
+##best params monks1:{'C': 810, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 0.005, 'kernel': 'rbf', 'shrinking': True, 'tol': 0.000001}}
+##best params monks2:{'C': 1000, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'rbf', 'shrinking': True, 'tol': 0.0001}
+##best params monks3{'C': 0.5, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'rbf', 'shrinking': True, 'tol': 0.1}
+##{'C': 10, 'coef0': 1, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'poly', 'shrinking': True, 'tol': 0.0001}
 
 ########################
 ########GRAPH#######
 ########################
 
-param_range = np.arange(1,20, 1)
+param_range = np.arange(1,20)
 train_scores, test_scores = validation_curve(
-    svclassifier, X_train, y_train, param_name="max_iter", param_range=param_range,
-    cv=5, scoring="neg_mean_squared_error", n_jobs=1)
+    svclassifier, X_train, y_train, param_name="C", param_range=param_range,
+    cv=5, scoring="accuracy", n_jobs=1)
 train_scores_mean = np.mean(train_scores, axis=1)
 train_scores_std = np.std(train_scores, axis=1)
 test_scores_mean = np.mean(test_scores, axis=1)
 test_scores_std = np.std(test_scores, axis=1)
 
-plt.title("Error Curve with SVM(MONKS1)")
-plt.xlabel('Max_iter')
-plt.ylabel("Error")
+plt.title("Effects of Regularization parameter on SVM(MONKS1)")
+plt.xlabel('C')
+plt.ylabel("Accuracy")
 lw = 2
-plt.xlim(1,20)
-#plt.ylim(0,1)
+#plt.xlim()
+plt.ylim(0,1)
 plt.plot(param_range, train_scores_mean, label="Training score",
              color="darkorange", lw=lw)
-plt.plot(param_range, test_scores_mean, label="Cross-validation score",
+plt.plot(param_range, test_scores_mean, label="Testing score",
              color="navy", lw=lw)
 
 plt.legend(loc="best")
@@ -76,4 +76,4 @@ print('Training Score is ', accuracy_score(y_train,X_pred))
 print('Testing Score is ', accuracy_score(y_test,y_pred))
 print('Training Error is ', mean_squared_error(y_train,X_pred))
 print('Testing Error is ', mean_squared_error(y_test,y_pred))
-plt.show()
+plt.savefig('img/SVM/svmMonk3.png')

@@ -21,7 +21,7 @@ Add explanation of hyperparameters
 show examples of gridsearch code
 
 
-Add graphs pertaining to new models
+Add graphs pertaining to new models - done
 predict MLCUP values with model - done
 
 
@@ -29,7 +29,12 @@ predict MLCUP values with model - done
 
 DO AT THE END - IF TIME IS STILL AVAILABLE
 Find third model, if uses different tool (not pandas, sklearn) even better. Perform same steps as above. If best model,
-use for MLCup.
+use for MLCup. 
+
+
+Finish for Monk 2 and 3
+
+Do svm and knn on students
 
 
 

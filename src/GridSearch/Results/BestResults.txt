@@ -1,7 +1,6 @@
 !!!!!!!!!!!!!!!!!!!!!!!!!!SVM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-SVM Monks1 - {'C': 810, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 0.005, 'kernel': 'rbf', 'max_iter': -1, 'shrinking': True, 'tol': 1e-06}
-
+SVM Monks1 - 
 {'C': 35, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'poly', 'max_iter': -1, 'shrinking': True, 'tol': 0.001}
 
 Training Score is  1.0
@@ -104,5 +103,15 @@ Testing Error is  0.6051727370272808
 
 
 
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!Decision Tree Classifier!!!!!!!!!!!!!!!!!!
+
+
+Students - (splitter='random',min_impurity_decrease=0,max_features=None,criterion='gini',class_weight=None,min_weight_fraction_leaf=0,min_samples_split=0.1,max_leaf_nodes=13,max_depth=191,min_samples_leaf=4)
+
+Training Score is  0.4240506329113924
+Testing Score is  0.27848101265822783
+Training Error is  2.3354430379746836
+Testing Error is  2.5443037974683542
 
 

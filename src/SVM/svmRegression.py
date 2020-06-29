@@ -11,8 +11,8 @@ from sklearn.model_selection import validation_curve, GridSearchCV, cross_val_sc
 from sklearn import metrics
 
 
-train = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\MLCup\\Internal Testing\\train-self.csv")
-test = pd.read_csv("C:\\Users\\Dennis\\Documents\\GitHub\\Machine-Learning2020\\src\\dataset\\MLCup\\Internal Testing\\test-self.csv")  
+train = pd.read_csv("src/dataset/MLCup/Internal Testing/train-self.csv")
+test = pd.read_csv("src/dataset/MLCup/Internal Testing/test-self.csv")  
 
 dbdata = train
 dbdata2 = test
@@ -31,6 +31,32 @@ y_pred = svrclassifier.predict(X_test)
 
 
 
+########################
+########GRAPH#######
+########################
+param_range = np.arange(1,20)
+train_scores, test_scores = validation_curve(
+    svrclassifier, X_train, y_train, param_name="C", param_range=param_range,
+    cv=5, scoring="explained_variance", n_jobs=4)
+train_scores_mean = np.mean(train_scores, axis=1)
+train_scores_std = np.std(train_scores, axis=1)
+test_scores_mean = np.mean(test_scores, axis=1)
+test_scores_std = np.std(test_scores, axis=1)
+
+plt.title("Validation Curve for SVR")
+plt.xlabel('C')
+plt.ylabel('Explained Variance Score(Y)')
+lw = 2
+plt.ylim(0,1)
+plt.plot(param_range, train_scores_mean, label="Training score",
+            color="darkorange", lw=lw)
+plt.plot(param_range, test_scores_mean, label="Testing score",
+            color="navy", lw=lw)
+
+plt.legend(loc="best")
+
+
+
 
 ##print('Training Score is ', metrics.euclidean_distances(y_train,X_pred))
 ##print('Testing Score is ', metrics.euclidean_distances(y_test,y_pred))
@@ -41,3 +67,5 @@ print('Testing Score is ', metrics.explained_variance_score(y_test,y_pred))
 
 print('Training Error is ', metrics.mean_squared_error(y_train,X_pred))
 print('Testing Error is ', metrics.mean_squared_error(y_test,y_pred))
+
+plt.savefig('img/SVR/SVR_Y.png')
