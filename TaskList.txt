@@ -32,9 +32,11 @@ Find third model, if uses different tool (not pandas, sklearn) even better. Perf
 use for MLCup. 
 
 
-Finish for Monk 2 and 3
+Finish for Monk 2 and 3 -done
 
-Do svm and knn on students
+Do svm and knn on students - done
+
+mean euclidean distance between 2 knr  predictions
 
 
 

@@ -26,7 +26,6 @@ test_encoded = student_test.apply(LabelEncoder().fit_transform)
 
 
 dbdata = train_encoded
-dbdata2 = test_encoded
 
     
 
@@ -37,7 +36,7 @@ X_train = train_encoded.iloc[:, np.arange(32)]
 y_train = train_encoded.iloc[:, 32]
 
 ##Performs the girdsearch
-knclassifier = KNeighborsClassifier()
+knclassifier = KNeighborsClassifier(weights='uniform',metric='manhattan',algorithm='kd_tree',p=1,leaf_size=6,n_neighbors=37)
 
 ###Pass Params, default param grid
 # 'n_neighbours':(1,2,3,4,5,6,7,8,9,10,20,30,50,100),
@@ -48,10 +47,10 @@ knclassifier = KNeighborsClassifier()
 # 'metric':('euclidean','manhattan','chebyshev','minkowski','mahalanobis')
 
 parameters = {
-    'n_neighbors':(3,4,5,6,7,8,9,10,20,30,50,100),
+    'n_neighbors':(np.arange(25,41)),
     'weights':('uniform','distance'),
     'algorithm':('ball_tree','kd_tree','brute'),
-    'leaf_size':(1,5,10,20,30,50,60,70,80,90,100,200,500),
+    'leaf_size':(np.arange(6,20)),
     'p':(1,2,3,5,10),
     'metric':('euclidean','manhattan','chebyshev','minkowski')
 
@@ -59,11 +58,11 @@ parameters = {
 
 
 
-clf = RandomizedSearchCV(knclassifier, parameters,scoring='accuracy', iid=False,cv=10,verbose=10,n_jobs=-1)
+clf = GridSearchCV(knclassifier, parameters,scoring='accuracy', iid=False,cv=10,n_jobs=-1)
 clf.fit(X_train,y_train)  
 
 
-print(clf,file=open('src/GridSearch/Results/KNNoutput.log', 'a'))
-print(clf.best_estimator_,file=open('src/GridSearch/Results/KNNoutput.log', 'a'))
-print(clf.best_score_,file=open('src/GridSearch/Results/KNNoutput.log', 'a'))
-print(clf.best_params_,file=open('src/GridSearch/Results/KNNoutput.log', 'a'))
+print(clf,file=open('src/GridSearch/Results/KNNoutputstudent.log', 'a'))
+print(clf.best_estimator_,file=open('src/GridSearch/Results/KNNoutputstudent.log', 'a'))
+print(clf.best_score_,file=open('src/GridSearch/Results/KNNoutputstudent.log', 'a'))
+print(clf.best_params_,file=open('src/GridSearch/Results/KNNoutputstudent.log', 'a'))

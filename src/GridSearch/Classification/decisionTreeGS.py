@@ -21,15 +21,14 @@ student_test = pd.read_csv("src/dataset/Students/student-test.csv", header=None)
 
 
 
-# train_encoded = student_train.apply(LabelEncoder().fit_transform)
-# test_encoded = student_test.apply(LabelEncoder().fit_transform)
+train_encoded = student_train.apply(LabelEncoder().fit_transform)
 
 X_train = monks1train.iloc[:, [1,2,3,4,5,6]]#np.arange(32
 y_train = monks1train.iloc[:, 0]#32
 
 
 
-dtClassifier = DecisionTreeClassifier(splitter='random',min_samples_split=0.2,min_impurity_decrease=0,max_features='log2',max_depth=None,criterion='entropy',class_weight=None)
+dtClassifier = DecisionTreeClassifier()
 
 # Original Hyperparameters tested
 # 'criterion':('gini', 'entropy'),
@@ -55,17 +54,18 @@ parameters = {
 'max_features':(None,'auto','sqrt','log2'),
 'max_leaf_nodes':(None,5,10,100),
 'min_impurity_decrease':(0,0.5,1.0),
-'class_weight':(None,'balanced')
+'class_weight':(None,'balanced'),
+'random_state':(1,2,3,4,5)
 }
 
 
-clf = GridSearchCV(dtClassifier, parameters,scoring='accuracy', iid=False,cv=5,verbose=10,n_jobs=-1)#n_iter=1000
+clf = RandomizedSearchCV(dtClassifier, parameters,scoring='accuracy', iid=False,cv=5,n_jobs=-1,n_iter=10000)#n_iter=1000
 clf.fit(X_train,y_train)
 
 
 
-print(clf,file=open('src/GridSearch/Results/DTCoutput.log', 'a'))
-print(clf.best_estimator_,file=open('src/GridSearch/Results/DTCoutput.log', 'a'))
-print(clf.best_score_,file=open('src/GridSearch/Results/DTCoutput.log', 'a'))
-print(clf.best_params_,file=open('src/GridSearch/Results/DTCoutput.log', 'a'))
+print(clf,file=open('src/GridSearch/Results/DTCoutputmonks1.log', 'a'))
+print(clf.best_estimator_,file=open('src/GridSearch/Results/DTCoutputmonks1.log', 'a'))
+print(clf.best_score_,file=open('src/GridSearch/Results/DTCoutputmonks1.log', 'a'))
+print(clf.best_params_,file=open('src/GridSearch/Results/DTCoutputmonks1.log', 'a'))
 

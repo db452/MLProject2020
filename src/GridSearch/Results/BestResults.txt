@@ -66,6 +66,14 @@ Training Error is  0.0
 Testing Error is  0.0765661252900232
 
 
+Students - (weights='uniform',metric='manhattan',algorithm='kd_tree',p=1,leaf_size=6,n_neighbors=37)
+
+Training Score is  1.0
+Testing Score is  0.4177215189873418
+Training Error is  0.0
+Testing Error is  0.5822784810126582
+
+
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!SVR REGRESSION!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
@@ -113,5 +121,9 @@ Training Score is  0.4240506329113924
 Testing Score is  0.27848101265822783
 Training Error is  2.3354430379746836
 Testing Error is  2.5443037974683542
+
+Monks1
+
+
 
 

@@ -31,14 +31,14 @@ test_encoded = student_test.apply(LabelEncoder().fit_transform)
 X_train = monks1train.iloc[:, [1,2,3,4,5,6]]#np.arange(32
 y_train = monks1train.iloc[:, 0]#32
 
-X_test = monks1train.iloc[:, [1,2,3,4,5,6]]#np.arange(32
-y_test = monks1train.iloc[:, 0]#32
+X_test = monks1test.iloc[:, [1,2,3,4,5,6]]#np.arange(32
+y_test = monks1test.iloc[:, 0]#32
 
 
 
 
-
-DTclassifier = DecisionTreeClassifier(class_weight= 'balanced', criterion= 'gini', max_depth= None, max_features= None, max_leaf_nodes= 10, min_impurity_decrease= 0, min_samples_leaf= 1, min_samples_split= 2, min_weight_fraction_leaf= 0, splitter= 'random')
+######
+DTclassifier = DecisionTreeClassifier(class_weight= 'balanced', criterion= 'gini', max_depth= None, max_features= None, max_leaf_nodes= 10, min_impurity_decrease= 0, min_samples_leaf= 1, min_samples_split= 2, min_weight_fraction_leaf= 0, splitter= 'random',random_state=1)
 
 
 

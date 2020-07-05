@@ -7,6 +7,7 @@ from sklearn.svm import SVC
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, mean_squared_error
 from sklearn.datasets import load_digits
 from sklearn.model_selection import validation_curve, GridSearchCV, cross_val_score
+from sklearn.preprocessing import LabelEncoder
 
 monks1train = pd.read_csv("src/dataset/Monk/pandasdataset/monks1train.csv")
 monks1test = pd.read_csv("src/dataset/Monk/pandasdataset/monks1test.csv")  
@@ -16,6 +17,13 @@ monks2test = pd.read_csv("src/dataset/Monk/pandasdataset/monks2test.csv")
 
 monks3train = pd.read_csv("src/dataset/Monk/pandasdataset/monks3train.csv")
 monks3test = pd.read_csv("src/dataset/Monk/pandasdataset/monks3test.csv")  
+
+student_train = pd.read_csv("src/dataset/Students/student-train.csv", header=None)
+student_test = pd.read_csv("src/dataset/Students/student-test.csv", header=None)
+
+train_encoded = student_train.apply(LabelEncoder().fit_transform)
+test_encoded = student_test.apply(LabelEncoder().fit_transform)
+
 
 dbdata = monks3train
 dbdata2 = monks3test
@@ -31,7 +39,7 @@ y_test = dbdata2.iloc[:, 0]
 
 
 #####Graphs the best results obtained from the gridsearch
-svclassifier = SVC(C=10, coef0= 1, decision_function_shape= 'ovo', gamma= 'auto', kernel= 'poly', max_iter= -1, shrinking= True, tol= 0.0001,probability=True)
+svclassifier = SVC(class_weight=None,decision_function_shape='ovo',gamma='scale',kernel='poly',shrinking=True,C=1, coef0=1, tol=0.0001)
 svclassifier.fit(X_train, y_train)
 X_pred= svclassifier.predict(X_train)
 y_pred = svclassifier.predict(X_test)  
