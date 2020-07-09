@@ -2,12 +2,8 @@ import matplotlib.pyplot as plt
 import pandas as pd  
 import numpy as np
 
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.neighbors import KNeighborsRegressor
-from sklearn.metrics import classification_report, confusion_matrix, mean_squared_error, accuracy_score
-from sklearn.model_selection import validation_curve, GridSearchCV
-from sklearn import metrics
+from sklearn.model_selection import  GridSearchCV
 from sklearn.preprocessing import LabelEncoder
 
 

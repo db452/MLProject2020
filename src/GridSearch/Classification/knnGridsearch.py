@@ -2,11 +2,8 @@ import matplotlib.pyplot as plt
 import pandas as pd  
 import numpy as np
 
-from sklearn.datasets import load_iris
-from sklearn.model_selection import train_test_split, StratifiedKFold
 from sklearn.neighbors import KNeighborsClassifier
-from sklearn.metrics import classification_report, confusion_matrix, mean_squared_error, accuracy_score
-from sklearn.model_selection import validation_curve, GridSearchCV, RandomizedSearchCV
+from sklearn.model_selection import  GridSearchCV, RandomizedSearchCV
 from sklearn.preprocessing import LabelEncoder
 
 monks1train = pd.read_csv("src/dataset/Monk/pandasdataset/monks1train.csv")

@@ -1,12 +1,9 @@
 import pandas as pd  
 import numpy as np  
-import matplotlib.pyplot as plt  
-import scikitplot as skplt
-from sklearn.model_selection import train_test_split
+
+
 from sklearn.svm import SVR
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, mean_squared_error
-from sklearn.datasets import load_digits
-from sklearn.model_selection import validation_curve, GridSearchCV, cross_val_score
+from sklearn.model_selection import GridSearchCV
 from sklearn.preprocessing import LabelEncoder
 
 student_train = pd.read_csv("src/dataset/Students/student-train.csv", header=None)

@@ -35,6 +35,16 @@ Testing Score is  0.9443155452436195
 Training Error is  0.008264462809917356
 Testing Error is  0.05568445475638051
 
+
+Students - 
+
+(class_weight=None,decision_function_shape='ovo',gamma='scale',kernel='poly',shrinking=True,C=1, coef0=1, tol=0.0001)
+
+Training Score is  0.8037974683544303
+Testing Score is  0.4177215189873418
+Training Error is  0.8259493670886076
+Testing Error is  2.4683544303797467
+
 !!!!!!!!!!!!!!!!!!!!!!!!!!/SVM!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 
@@ -122,7 +132,32 @@ Testing Score is  0.27848101265822783
 Training Error is  2.3354430379746836
 Testing Error is  2.5443037974683542
 
-Monks1
+Monks1 - (splitter= 'best', random_state= 3, min_weight_fraction_leaf= 0.1, min_samples_split= 2, min_samples_leaf= 10, min_impurity_decrease= 0, max_leaf_nodes= 5, max_features= None, max_depth= None, criterion= 'gini', class_weight= None)
+
+
+Training Score is  0.8536585365853658
+Testing Score is  0.7494199535962877
+Training Error is  0.14634146341463414
+Testing Error is  0.2505800464037123
+
+Monks2-(splitter= 'random', random_state= 3, min_weight_fraction_leaf= 0, min_samples_split= 2, min_samples_leaf= 1, min_impurity_decrease= 0, max_leaf_nodes= None, max_features= None, max_depth= 10, criterion= 'gini', class_weight= 'balanced')
+
+
+Training Score is  1.0
+Testing Score is  0.9095127610208816
+Training Error is  0.0
+Testing Error is  0.09048723897911833
+
+
+
+Monks3-(splitter= 'random', random_state= 1, min_weight_fraction_leaf= 0, min_samples_split= 0.1, min_samples_leaf= 1, min_impurity_decrease= 0, max_leaf_nodes= None, max_features= None, max_depth= None, criterion= 'gini', class_weight= None)
+
+
+
+Training Score is  0.9504132231404959
+Testing Score is  1.0
+Training Error is  0.049586776859504134
+Testing Error is  0.0
 
 
 

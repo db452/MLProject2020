@@ -1,13 +1,13 @@
 import pandas as pd  
 import numpy as np  
 import matplotlib.pyplot as plt  
-import scikitplot as skplt
-from sklearn.model_selection import train_test_split
 from sklearn.svm import SVC
 from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, mean_squared_error
 from sklearn.datasets import load_digits
 from sklearn.model_selection import validation_curve, GridSearchCV, cross_val_score
 from sklearn.preprocessing import LabelEncoder
+from learningcurve import  plot_learning_curve
+
 
 monks1train = pd.read_csv("src/dataset/Monk/pandasdataset/monks1train.csv")
 monks1test = pd.read_csv("src/dataset/Monk/pandasdataset/monks1test.csv")  
@@ -25,63 +25,90 @@ train_encoded = student_train.apply(LabelEncoder().fit_transform)
 test_encoded = student_test.apply(LabelEncoder().fit_transform)
 
 
-dbdata = monks3train
-dbdata2 = monks3test
 
+counter = 1 
 
-X_train = dbdata.iloc[:, [1,2,3,4,5,6]]
-y_train = dbdata.iloc[:, 0]
-X_test = dbdata2.iloc[:, [1,2,3,4,5,6]]
-y_test = dbdata2.iloc[:, 0]
+svm1 = SVC(coef0= 0, decision_function_shape= 'ovo', gamma='auto', kernel= 'poly', shrinking= True, tol=0.001,probability=True,C=35)
+param_range1 = np.arange(1, 40)
+title1='SVC Learning Curve for MONKS1'
 
-  
+svm2 = SVC(kernel='poly',class_weight='balanced',decision_function_shape='ovo',shrinking=False,coef0=2,degree=3,gamma='auto',tol=0.0005,probability=True, C=1000)#
+param_range2 = np.arange(950,1001)
+title2='SVC Learning Curve for MONKS2'
 
-
-
-#####Graphs the best results obtained from the gridsearch
-svclassifier = SVC(class_weight=None,decision_function_shape='ovo',gamma='scale',kernel='poly',shrinking=True,C=1, coef0=1, tol=0.0001)
-svclassifier.fit(X_train, y_train)
-X_pred= svclassifier.predict(X_train)
-y_pred = svclassifier.predict(X_test)  
+svm3 = SVC(class_weight='balanced',decision_function_shape='ovo',gamma='auto',kernel='poly',shrinking=True,coef0=1,tol=0.0001,probability=True,C=100)
+param_range3 = np.arange(1,20)
+title3='SVC Learning Curve for MONKS3'  
 
 
 
-##best params monks1:{'C': 810, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 0.005, 'kernel': 'rbf', 'shrinking': True, 'tol': 0.000001}}
-##best params monks2:{'C': 1000, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'rbf', 'shrinking': True, 'tol': 0.0001}
-##best params monks3{'C': 0.5, 'coef0': 0, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'rbf', 'shrinking': True, 'tol': 0.1}
-##{'C': 10, 'coef0': 1, 'decision_function_shape': 'ovo', 'gamma': 'auto', 'kernel': 'poly', 'shrinking': True, 'tol': 0.0001}
+svm4=SVC(class_weight=None,decision_function_shape='ovo',gamma='scale',kernel='poly',shrinking=True,C=1, coef0=1, tol=0.0001)
 
-########################
-########GRAPH#######
-########################
+title4='SVC Learning Curve for Students'  
 
-param_range = np.arange(1,20)
-train_scores, test_scores = validation_curve(
-    svclassifier, X_train, y_train, param_name="C", param_range=param_range,
-    cv=5, scoring="accuracy", n_jobs=1)
-train_scores_mean = np.mean(train_scores, axis=1)
-train_scores_std = np.std(train_scores, axis=1)
-test_scores_mean = np.mean(test_scores, axis=1)
-test_scores_std = np.std(test_scores, axis=1)
 
-plt.title("Effects of Regularization parameter on SVM(MONKS1)")
-plt.xlabel('C')
-plt.ylabel("Accuracy")
-lw = 2
-#plt.xlim()
-plt.ylim(0,1)
-plt.plot(param_range, train_scores_mean, label="Training score",
-             color="darkorange", lw=lw)
-plt.plot(param_range, test_scores_mean, label="Testing score",
-             color="navy", lw=lw)
+def run(dbdata, dbdata2, svclassifier, param_range,title):
+    global counter
 
-plt.legend(loc="best")
-##################################
+    X_train = dbdata.iloc[:, np.arange(32)]
+    y_train = dbdata.iloc[:, 32]
+    X_test = dbdata2.iloc[:, np.arange(32)]
+    y_test = dbdata2.iloc[:, 32]
 
-print(confusion_matrix(y_test,y_pred))  
-print(classification_report(y_test,y_pred))
-print('Training Score is ', accuracy_score(y_train,X_pred))
-print('Testing Score is ', accuracy_score(y_test,y_pred))
-print('Training Error is ', mean_squared_error(y_train,X_pred))
-print('Testing Error is ', mean_squared_error(y_test,y_pred))
-plt.savefig('img/SVM/svmMonk3.png')
+    #####Graphs the best results obtained from the gridsearch
+    svclassifier.fit(X_train, y_train)
+    X_pred= svclassifier.predict(X_train)
+    y_pred = svclassifier.predict(X_test)  
+
+    ########################
+    ########VALIDATION CURVE#######
+    ########################
+
+    # train_scores, test_scores = validation_curve(
+    #     svclassifier, X_train, y_train, param_name="C", param_range=param_range,
+    #     cv=3, scoring="accuracy", n_jobs=-1)
+    # train_scores_mean = np.mean(train_scores, axis=1)
+    # train_scores_std = np.std(train_scores, axis=1)
+    # test_scores_mean = np.mean(test_scores, axis=1)
+    # test_scores_std = np.std(test_scores, axis=1)
+
+    # plt.title("Accuracy Score of SVM(MONKS%d)" % counter)
+    # plt.xlabel('C')
+    # plt.ylabel("Accuracy")
+    # lw = 2
+    # plt.ylim(0,1)
+    # plt.plot(param_range, train_scores_mean, label="Training score",
+    #             color="darkorange", lw=lw)
+    # plt.plot(param_range, test_scores_mean, label="Testing score",
+    #             color="navy", lw=lw)
+
+    # plt.legend(loc="best")
+    ########################################
+    ########################################
+    #################LEARNING CURVE#########
+    ########################################
+
+    plot_learning_curve(svclassifier, title, X_train, y_train, ylim=(0, 1.01),cv=5, n_jobs=4)
+
+
+
+    print(confusion_matrix(y_test,y_pred))  
+    print(classification_report(y_test,y_pred))
+    print('Training Score is ', accuracy_score(y_train,X_pred))
+    print('Testing Score is ', accuracy_score(y_test,y_pred))
+    print('Training Error is ', mean_squared_error(y_train,X_pred))
+    print('Testing Error is ', mean_squared_error(y_test,y_pred))
+    plt.savefig('img/SVM/Students%d' % counter)
+    counter +=1
+    plt.clf()
+
+
+#run(monks1train,monks1test,svm1,param_range1,title1)
+
+
+#run(monks2train,monks2test,svm2,param_range2,title2)
+
+
+#run(monks3train,monks3test,svm3,param_range3,title3)
+
+run(train_encoded,test_encoded,svm4,param_range3,title4)

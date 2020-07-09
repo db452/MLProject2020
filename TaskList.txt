@@ -36,7 +36,10 @@ Finish for Monk 2 and 3 -done
 
 Do svm and knn on students - done
 
-mean euclidean distance between 2 knr  predictions
+mean euclidean distance between 2 knr  predictions - done
+
+
+reduce to 10 pages
 
 
 

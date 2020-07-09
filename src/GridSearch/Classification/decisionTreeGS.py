@@ -1,7 +1,5 @@
 import pandas as pd  
 import numpy as np  
-import matplotlib.pyplot as plt  
-from sklearn.metrics import classification_report, confusion_matrix, accuracy_score, mean_squared_error
 from sklearn.model_selection import GridSearchCV, RandomizedSearchCV
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import LabelEncoder
